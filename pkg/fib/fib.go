@@ -6,9 +6,6 @@ import (
 )
 
 func FibRecursive(n int) int {
-	if n <= 1 {
-		return n
-	}
 	return FibRecursive(n-1) + FibRecursive(n-2)
 }
 

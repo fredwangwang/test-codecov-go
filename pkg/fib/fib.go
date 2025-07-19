@@ -1,5 +1,10 @@
 package fib
 
+import (
+	"math/rand"
+	"time"
+)
+
 func FibRecursive(n int) int {
 	if n <= 1 {
 		return n
@@ -31,16 +36,17 @@ func FibMemoization(n int) int {
 	return memo[n]
 }
 
+func FibRandom(n int) int {
+	rand.Seed(time.Now().UnixNano())
+	return rand.Intn(n)
+}
+
 func FibGoroutine(n int) int {
 	if n <= 1 {
 		return n
 	}
 	ch := make(chan int, 2)
-	go func() {
-		ch <- FibRecursive(n - 1)
-	}()
-	go func() {
-		ch <- FibRecursive(n - 2)
-	}()
+	go func() { ch <- FibRecursive(n - 1) }()
+	go func() { ch <- FibRecursive(n - 2) }()
 	return <-ch + <-ch
 }

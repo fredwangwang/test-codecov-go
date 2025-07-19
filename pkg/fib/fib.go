@@ -30,3 +30,17 @@ func FibMemoization(n int) int {
 	}
 	return memo[n]
 }
+
+func FibGoroutine(n int) int {
+	if n <= 1 {
+		return n
+	}
+	ch := make(chan int, 2)
+	go func() {
+		ch <- FibRecursive(n - 1)
+	}()
+	go func() {
+		ch <- FibRecursive(n - 2)
+	}()
+	return <-ch + <-ch
+}

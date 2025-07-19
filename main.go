@@ -12,4 +12,5 @@ func main() {
 	fmt.Println(fib.FibRecursive(10))
 	fmt.Println(fib.FibIterative(10))
 	fmt.Println(fib.FibMemoization(10))
+	fmt.Println(fib.FibGoroutine(10))
 }
